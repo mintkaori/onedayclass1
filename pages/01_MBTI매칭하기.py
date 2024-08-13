@@ -49,7 +49,19 @@ mbti_type = st.selectbox('당신의 MBTI 유형을 선택해주세요:', ['INTJ'
 if st.button('성향 분석하기'):
     description, compatible, incompatible = get_mbti_info(mbti_type)
     
-    st.write(f"{name}님, 당신의 MBTI 성향은 {mbti_type}입니다.")
-    st.write(f"성향 설명: {description}")
-    st.write(f"잘 맞는 MBTI 유형: {', '.join(compatible)}")
-    st.write(f"잘 맞지 않는 MBTI 유형: {', '.join(incompatible)}")
+    # 결과를 예쁘게 표시
+    st.markdown(f"## {name}님, 당신의 MBTI 성향은 **{mbti_type}**입니다.")
+    st.markdown(f"### 성향 설명")
+    st.write(description)
+    
+    st.markdown("### 잘 맞는 MBTI 유형")
+    if compatible:
+        st.markdown(f"- {', '.join(compatible)}")
+    else:
+        st.write("정보 없음")
+    
+    st.markdown("### 잘 맞지 않는 MBTI 유형")
+    if incompatible:
+        st.markdown(f"- {', '.join(incompatible)}")
+    else:
+        st.write("정보 없음")
